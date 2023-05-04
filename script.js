@@ -1,4 +1,5 @@
 const table = document.querySelector('#table');
+const tbody = document.querySelector('#tbody');
 const form = document.querySelector('.form');
 // const title = document.querySelector('#title');
 // const author = document.querySelector('#author');
@@ -19,6 +20,15 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(book);
 }
 
+function addRows() {
+    let trow = document.createElement('tr');
+    for (let i=0 ; i<4; i++) {
+        let tdata = document.createElement('td');
+        trow.appendChild(tdata);
+    }
+    tbody.appendChild(trow);
+}
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     title = e.currentTarget.title.value;
@@ -26,6 +36,6 @@ form.addEventListener('submit', (e) => {
     pages = e.currentTarget.pages.value;
     read = e.currentTarget.read.checked;
     addBookToLibrary(title, author, pages ,read);
-    console.log(e.currentTarget.author.value);
+    addRows();
     console.log(myLibrary);
 })
