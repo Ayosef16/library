@@ -1,3 +1,13 @@
+:root{
+    --grey: #d1d5db;
+    --green: #bef264;
+    --purple: #8b5cf6;
+    --round-corners: 1rem;
+    --small-pad: 20px 10px;
+    --med-pad: 60px 30px;
+    --pointer: pointer;
+}
+
 html{
     margin: 0;
     padding: 0;
@@ -6,6 +16,7 @@ html{
     font-size: 24px;
     /* border: 5px solid blue; */
     height: 100%;
+    text-align: center;
 }
 
 body{
@@ -31,9 +42,10 @@ body{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: #d1d5db;
-    padding: 40px 20px;
+    background-color: var(--grey);
+    padding: var(--med-pad);
     gap: 10px;
+    border-radius: var(--round-corners);
 }
 
 .container{
@@ -46,9 +58,59 @@ body{
 
 .container input[type="text"], .container input[type="number"] {
     min-width: 70%;
+    border-radius: var(--round-corners);
 }
 
 .read-container{
     justify-content: flex-start;
-    gap: 20px;
+    gap: 25px;
 }
+
+#submit-book{
+    border-radius: var(--round-corners);
+    background-color: var(--green);
+    padding: var(--small-pad);
+    font-size: 0.8rem;
+    margin-top: 50px;
+    font-weight: 900;
+    cursor: var(--pointer);
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+
+#table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid var(--purple);
+    table-layout: fixed;
+}
+
+#thead th:nth-child(1){
+    width: 50%;
+}
+
+#thead th:nth-child(2){
+    width: 30%;
+}
+
+#thead th:nth-last-child(-n+2){
+    width: 10%;
+}
+
+th, td {
+    padding: var(--small-pad);
+}
+
+td {
+    font-size: 0.8rem;
+}
+
+th{
+    text-shadow: 5px 5px 5px var(--purple);
+}   

@@ -27,11 +27,18 @@ function updateTable(library) {
         let author = row.insertCell(1);
         let pages = row.insertCell(2);
         let read = row.insertCell(3);
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        if ( book.read === true) {
+            checkbox.checked = true;
+        }
+        else if ( book.read === false) {
+            checkbox.checked = false;
+        }
         title.textContent = book.title
         author.textContent = book.author
         pages.textContent = book.pages
-        read.textContent = book.read
-        console.log(row);
+        read.appendChild(checkbox);
     });
 }
 
@@ -39,14 +46,6 @@ function clearTable(){
     tbody.innerHTML = '';
 }
 
-// function addRows() {
-//     let trow = document.createElement('tr');
-//     for (let i=0 ; i<4; i++) {
-//         let tdata = document.createElement('td');
-//         trow.appendChild(tdata);
-//     }
-//     tbody.appendChild(trow);
-// }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
