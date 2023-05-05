@@ -2,10 +2,7 @@ const table = document.querySelector('#table');
 const tbody = document.querySelector('#tbody');
 const form = document.querySelector('.form');
 const addBtn = document.querySelector('#add-btn');
-// const title = document.querySelector('#title');
-// const author = document.querySelector('#author');
-// const pages = document.querySelector('#pages');
-// const read = document.querySelector('#read');
+
 
 let myLibrary = [];
 
@@ -66,6 +63,12 @@ function hideForm() {
     form.classList.add('hidden');
 }
 
+function escForm(e) {
+    if (e.key === 'Escape') {
+        hideForm()
+    }
+}
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     title = e.currentTarget.title.value;
@@ -80,3 +83,7 @@ form.addEventListener('submit', (e) => {
 })
 
 addBtn.addEventListener('click', showForm);
+
+document.addEventListener('keydown',(e) => {
+    escForm(e);
+})
