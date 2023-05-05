@@ -1,6 +1,7 @@
 const table = document.querySelector('#table');
 const tbody = document.querySelector('#tbody');
 const form = document.querySelector('.form');
+const addBtn = document.querySelector('#add-btn');
 // const title = document.querySelector('#title');
 // const author = document.querySelector('#author');
 // const pages = document.querySelector('#pages');
@@ -35,6 +36,14 @@ function updateTable(library) {
         else if ( book.read === false) {
             checkbox.checked = false;
         }
+        checkbox.addEventListener('change', function() {
+            if (checkbox.checked) {
+                book.read = true;
+            }
+            else {
+                book.read = false;
+            }
+        })
         title.textContent = book.title
         author.textContent = book.author
         pages.textContent = book.pages
@@ -42,10 +51,20 @@ function updateTable(library) {
     });
 }
 
+
 function clearTable(){
     tbody.innerHTML = '';
 }
 
+function showForm() {
+    form.classList.remove('hidden');
+    form.classList.add('visible');
+}
+
+function hideForm() {
+    form.classList.remove('visible');
+    form.classList.add('hidden');
+}
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -56,5 +75,8 @@ form.addEventListener('submit', (e) => {
     addBookToLibrary(title, author, pages ,read);
     clearTable();
     updateTable(myLibrary);
+    hideForm();
     console.log(myLibrary);
 })
+
+addBtn.addEventListener('click', showForm);

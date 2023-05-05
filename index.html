@@ -13,7 +13,8 @@
 </head>
 <body>
     <div class="library">
-        <h1 class="library-name">Apple Book's</h1>
+        <h1 class="library-name">Apple's BookStore</h1>
+        <button type="submit" id="add-btn">+</button>
         <table id="table">
             <thead id="thead">
                 <tr>
@@ -26,14 +27,14 @@
             <tbody id="tbody"></tbody>
         </table>
         
-        <form class="form">
+        <form class="form hidden">
             <div class="title-container container">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" placeholder="Title of the book..." value="One Piece" required>
             </div>
             <div class="author-container container">
                 <label for="author">Author:</label>
-                <input type="text" id="author" name="author" placeholder="Author of the book..." value="Naoki Yoshida" required>
+                <input type="text" id="author" name="author" placeholder="Author of the book..." value="Eiichiro Oda" required>
             </div>
             <div class="pages-container container">
                 <label for="pages">Pages:</label>
@@ -43,7 +44,7 @@
                 <label for="read">Read:</label>
                 <input type="checkbox" id="read" name="read">
             </div>
-            <button type="submit" id="submit-book">Submit Book</button>
+            <button type="submit" id="submit-book">Add Book</button>
         </form>
     </div>
 </body>
