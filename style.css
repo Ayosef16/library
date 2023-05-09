@@ -18,9 +18,9 @@ html{
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
     /* border: 5px solid blue; */
-    height: 100%;
+    min-height: 100%;
     text-align: center;
-    background-image: linear-gradient(to right, var(--red), var(--slate))
+    background-image: linear-gradient(to right, var(--slate), var(--blue))
 }
 
 body{
@@ -31,7 +31,7 @@ body{
 
 .library{
     position: relative;
-    border: 5px solid red;
+    /* border: 5px solid red; */
     /* height: 100%; */
     
 }
@@ -74,6 +74,13 @@ body{
 .container input[type="text"], .container input[type="number"] {
     min-width: 70%;
     border-radius: var(--round-corners);
+    outline: none;
+}
+
+.container input[type="text"]:focus, .container input[type="number"]:focus {
+    border: 3px solid var(--purple);
+    transform: scale(1.01);
+    background-color: var(--blue);
 }
 
 .read-container{
@@ -111,10 +118,10 @@ body{
 }
 
 #thead th:nth-child(2){
-    width: 30%;
+    width: 20%;
 }
 
-#thead th:nth-last-child(-n+2){
+#thead th:nth-last-child(-n+3){
     width: 10%;
 }
 
@@ -132,4 +139,15 @@ th{
 
 #add-btn:hover, #submit-book:hover {
     transform: scale(1.1);
+}
+
+.svg{
+    fill: var(--purple);
+    width: 20px;
+    height: 20px;
+}
+
+.svg:hover{
+    transform: scale(1.2);
+    cursor: var(--pointer);
 }

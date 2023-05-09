@@ -25,6 +25,7 @@ function updateTable(library) {
         let author = row.insertCell(1);
         let pages = row.insertCell(2);
         let read = row.insertCell(3);
+        let eliminate = row.insertCell(4);
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         if ( book.read === true) {
@@ -41,6 +42,7 @@ function updateTable(library) {
                 book.read = false;
             }
         })
+        createEliminateSVG(eliminate);
         title.textContent = book.title
         author.textContent = book.author
         pages.textContent = book.pages
@@ -48,6 +50,26 @@ function updateTable(library) {
     });
 }
 
+
+function createEliminateSVG(cell) {
+    let iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    let iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    iconSvg.setAttribute('viewBox', '0 0 24 24');
+    iconPath.setAttribute('d', 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z')
+    iconSvg.appendChild(iconPath);
+    iconSvg.classList.add('svg');
+    cell.appendChild(iconSvg);
+}
+
+// function updateLibraryRead(e) {
+//     console.log(e.currentTarget)
+//     if (e.currentTarget.checked) {
+//         book.read = true;
+//     }
+//     else {
+//         book.read = false;
+//     }
+// }
 
 function clearTable(){
     tbody.innerHTML = '';
