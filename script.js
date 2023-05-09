@@ -34,15 +34,10 @@ function updateTable(library) {
         else if ( book.read === false) {
             checkbox.checked = false;
         }
-        checkbox.addEventListener('change', function() {
-            if (checkbox.checked) {
-                book.read = true;
-            }
-            else {
-                book.read = false;
-            }
-        })
-        createEliminateSVG(eliminate);
+        checkbox.addEventListener('change', (e) => {
+            updateLibraryRead(e, book);
+        });
+        createEliminateSVG(eliminate, library, book);
         title.textContent = book.title
         author.textContent = book.author
         pages.textContent = book.pages
@@ -51,25 +46,35 @@ function updateTable(library) {
 }
 
 
-function createEliminateSVG(cell) {
+function createEliminateSVG(cell, library, book) {
     let iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     let iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     iconSvg.setAttribute('viewBox', '0 0 24 24');
     iconPath.setAttribute('d', 'M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z')
     iconSvg.appendChild(iconPath);
     iconSvg.classList.add('svg');
+    addEventSvg(iconSvg, library, book);
     cell.appendChild(iconSvg);
 }
 
-// function updateLibraryRead(e) {
-//     console.log(e.currentTarget)
-//     if (e.currentTarget.checked) {
-//         book.read = true;
-//     }
-//     else {
-//         book.read = false;
-//     }
-// }
+function addEventSvg(svg, library, book) {
+    svg.addEventListener('click', () => {
+        let index = library.indexOf(book);
+        library.splice(index,1);
+        clearTable();
+        updateTable(library);
+    })
+}
+
+function updateLibraryRead(e, book) {
+    if (e.currentTarget.checked) {
+        book.read = true;
+    }
+    else {
+        book.read = false;
+    }
+    }
+    
 
 function clearTable(){
     tbody.innerHTML = '';
@@ -91,6 +96,13 @@ function escForm(e) {
     }
 }
 
+function clearForm() {
+    form.title.value = '';
+    form.author.value = '';
+    form.pages.value = '';
+    form.read.checked = false;
+}
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     title = e.currentTarget.title.value;
@@ -101,7 +113,7 @@ form.addEventListener('submit', (e) => {
     clearTable();
     updateTable(myLibrary);
     hideForm();
-    console.log(myLibrary);
+    clearForm();
 })
 
 addBtn.addEventListener('click', showForm);
